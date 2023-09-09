@@ -23,7 +23,7 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-.env.exampleをコピーし、.envを用意
+.env.exampleをコピーし、.envを用意。TODO項目を入力。
 
 ```shell
 cp .env.example .env
@@ -50,7 +50,7 @@ sail artisan migrate
 
 ### artisanコマンドの実行
 ```shell
-# Artisanコマンドをローカル環境で実行
+# Artisanコマンドをローカル環境で実行(Sailを利用する場合は使わない)
 php artisan queue:work
 
 # Laravel Sailの中でArtisanコマンドを実行
