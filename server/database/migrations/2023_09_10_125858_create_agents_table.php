@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id()->comment('ユーザーID');
-            $table->string('name')->comment('ユーザー名');
+        Schema::create('agents', function (Blueprint $table) {
+            $table->uuid('uuid')->unique()->primary()->comment('代理人ID');
+            $table->string('name')->comment('代理人名');
             $table->string('email')->unique()->comment('メールアドレス');
             $table->string('postal_code')->comment('郵便番号');
             $table->string('prefecture')->comment('都道府県');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('agents');
     }
 };
