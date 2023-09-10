@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class StoreBuyerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,6 +30,7 @@ class StoreUserRequest extends FormRequest
             'address1' => 'required',
             'address2' => 'nullable',
             'phone_number' => 'required',
+            'firebase_uid' => 'required'
         ];
     }
 }

@@ -5,15 +5,17 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
-class UserSeeder extends Seeder
+class AgentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        DB::table('agents')->insert([
+            "uuid" => Str::uuid(),
             "name" => "sansan",
             "email" => "sansan@gmail.com",
             "postal_code" => "150-0001",
