@@ -10,12 +10,9 @@ use App\Http\Requests\StoreBuyerRequest;
 
 class BuyerController extends Controller
 {
-    /*
-    全てのユーザーのレコードを取得
-    GET|HEAD        api/buyer/buyer
-     */
     public function index() {
-        return BuyerResource::collection(Buyer::all());
+        $allBuyers = Buyer::all();
+        return BuyerResource::collection($allBuyers);
     }
 
     public function show(Buyer $buyer)
