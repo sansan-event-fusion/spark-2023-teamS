@@ -8,6 +8,7 @@ use App\Http\Resources\ShiftResource;
 use App\Models\Shift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redis;
 
 class ShiftController extends Controller
 {
@@ -15,21 +16,14 @@ class ShiftController extends Controller
     全てのユーザーのレコードを取得
     GET|HEAD        api/shift/shift
      */
-    public function index()
+    public function index(Request $request, Shift $shift)
     {
-        $shifts = Shift::all();
-        $validShifts = [];
+        // 購入者が選択した日付の値を定義
+        $selectedDate = $request->query('date');
 
-        $now = Carbon::now();
-        $now = $now->toDateTimeString();
+        $shifts = Shift::query()->where('date', $selectedDate)->get();
 
-        foreach ($shifts as $shift) {
-            if ($shift->ends_time > $now) {
-                array_push($validShifts, $shift);
-            }
-        }
-
-        return ShiftResource::collection($validShifts);
+        return ShiftResource::collection($shifts);
     }
 
     // public function show(Shift $shift)
