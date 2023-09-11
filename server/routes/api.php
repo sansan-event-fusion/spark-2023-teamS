@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BuyerController;
 use App\Http\Controllers\Api\AgentController;
+use App\Http\Controllers\Api\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/user/buyer', BuyerController::class);
 Route::apiResource('/user/agent', AgentController::class);
+Route::apiResource('/delivery/buyers', HistoryController::class);
