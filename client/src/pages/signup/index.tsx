@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Box, Button, TextField } from "@mui/material";
@@ -19,6 +20,9 @@ export default function signup() {
             justifyContent: "center",
           }}
         >
+          <Box sx={{ marginBottom: "40px" }}>
+            <Image src="/DeliDeV.png" alt="logo" width={200} height={100} />
+          </Box>
           <TextField
             size="small"
             defaultValue=""
