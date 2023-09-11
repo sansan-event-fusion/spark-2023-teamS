@@ -9,9 +9,9 @@ class Buyer extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'uuid';
     protected $fillable = [
-        'id',
+        'uuid',
         'name',
         'email',
         'postal_code',
