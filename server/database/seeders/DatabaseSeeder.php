@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,10 +20,21 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(BuyerSeeder::class);
-        $this->call(AgentSeeder::class);
-        $this->call(HistorySeeder::class);
-        $this->call(EvaluationSeeder::class);
-        $this->call(ShiftSeeder::class);
+        // それぞれのテーブルの中にレコードが無い場合にシード値を格納する
+        if (DB::table('buyers')->count() === 0) {
+            $this->call(BuyerSeeder::class);
+        }
+        if (DB::table('agents')->count() === 0) {
+            $this->call(AgentSeeder::class);
+        }
+        if (DB::table('histories')->count() === 0) {
+            $this->call(HistorySeeder::class);
+        }
+        if (DB::table('evaluations')->count() === 0) {
+            $this->call(EvaluationSeeder::class);
+        }
+        if (DB::table('shifts')->count() === 0) {
+            $this->call(ShiftSeeder::class);
+        }
     }
 }
