@@ -46,7 +46,7 @@ export default function BuyerStart() {
                 sx={{
                   background: "white",
                   width: { xs: "200px", sm: "580px" },
-                  marginLeft: "30px",
+                  marginLeft: { xs: "0px", sm: "30px" },
                 }}
               />
             </LocalizationProvider>
