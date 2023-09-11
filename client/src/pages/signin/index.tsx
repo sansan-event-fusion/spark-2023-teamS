@@ -1,5 +1,6 @@
-import { DefaultLayout } from "@/components/DefaultLayout";
-import { Box, Button, Container, TextField } from "@mui/material";
+import Link from "next/link";
+
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 export default function signin() {
   return (
@@ -50,6 +51,13 @@ export default function signin() {
           >
             ログイン
           </Button>
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{ fontSize: "16px", marginTop: "10px" }}
+          >
+            <Link href={""}>新規登録</Link>
+          </Typography>
         </Box>
       </Box>
     </main>
