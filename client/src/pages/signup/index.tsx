@@ -21,7 +21,7 @@ export default function signup() {
           }}
         >
           <Box sx={{ marginBottom: "40px" }}>
-            <Image src="/DeliDeV.png" alt="logo" width={200} height={100} />
+            <Image src="/images/logo.png" alt="logo" width={200} height={100} />
           </Box>
           <TextField
             size="small"
