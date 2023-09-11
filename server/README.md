@@ -48,6 +48,12 @@ sail up -d
 sail artisan migrate
 ```
 
+(必要に応じて)シード値として初期値をレコードに生成。
+
+```shell
+sail artisan db:seed
+```
+
 ### artisanコマンドの実行
 ```shell
 # Artisanコマンドをローカル環境で実行(Sailを利用する場合は使わない)
