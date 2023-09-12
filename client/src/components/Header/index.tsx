@@ -12,7 +12,11 @@ import AppBar from "@mui/material/AppBar";
 
 export const Header = ({ onClickMenu }: HeaderProps) => {
   return (
-    <AppBar position="static" sx={{ background: "white", color: "black" }}>
+    <AppBar
+      position="static"
+      sx={{ background: "white", color: "black" }}
+      elevation={0}
+    >
       <Toolbar>
         <IconButton
           size="large"
