@@ -20,10 +20,11 @@ export default function BuyerStart() {
           <Box>
             <Typography
               sx={{
-                marginLeft: "10px",
-                display: { xs: "flex" },
-                flexDirection: { xs: "column", sm: "" },
-                alignItems: { xs: "center" },
+                marginLeft: { xs: "0px", sm: "30px" },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: { xs: "center", sm: "flex-start" },
+                fontSize: { xs: "18px", sm: "24px" },
               }}
             >
               一歩先を行く、新しい宅配体験
