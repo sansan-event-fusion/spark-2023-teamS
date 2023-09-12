@@ -26,7 +26,12 @@ export default function agentSchedulePage() {
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
           <Box width="50%">
-            <Typography sx={{ fontSize: { xs: "16px", sm: "24px" } }}>
+            <Typography
+              sx={{
+                fontSize: { xs: "16px", sm: "24px" },
+                marginLeft: { xs: "0px", sm: "32px" },
+              }}
+            >
               配送スケジュール
             </Typography>
             <DeliveryScheduleList />
@@ -36,6 +41,7 @@ export default function agentSchedulePage() {
               sx={{
                 fontSize: { xs: "16px", sm: "24px" },
                 marginTop: { xs: "20px", sm: "0px" },
+                marginLeft: { xs: "0px", sm: "32px" },
               }}
             >
               配送シフト
