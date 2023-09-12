@@ -26,4 +26,28 @@ class HistoryController extends Controller
         $history = History::create($data);
         return new HistoryResource($history);
     }
+
+    public function update(Request $request, $id)
+    {
+        $history = History::findOrFail($id);
+
+        // リクエストからstatusの値を取得
+        $status = $request->input('status');
+
+        if ($status) { // statusがtrueの場合
+            $history->status = true;
+            $message = 'History status set to true successfully!';
+        } else { // statusがfalseの場合
+            $history->status = false;
+            $message = 'History status set to false successfully!';
+        }
+
+        $history->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => $message
+        ]);
+    }
+
 }
