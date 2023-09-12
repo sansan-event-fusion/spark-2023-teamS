@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Box, Button, TextField } from "@mui/material";
 
-export default function signup() {
+export default function signupPage() {
   return (
     <main>
       <Box
