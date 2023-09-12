@@ -1,10 +1,16 @@
+import { useState } from "react";
+
+import { Box, Button } from "@mui/material";
+
+import { AddShiftDialog } from "@/components/AddShiftDialog";
 import { DefaultLayout } from "@/components/DefaultLayout";
 import { DeliveryScheduleList } from "@/components/DeliveryScheduleList";
 import { DeliveryShiftList } from "@/components/DeliveryShiftList";
 import { UserCountList } from "@/components/UserCountList";
-import { Box, Button, Grid, Typography } from "@mui/material";
 
 export default function agentSchedulePage() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <DefaultLayout>
       <Box
@@ -33,6 +39,7 @@ export default function agentSchedulePage() {
         </Box>
       </Box>
       <Button
+        onClick={() => setIsOpen(true)}
         size="small"
         variant="outlined"
         style={{
@@ -49,6 +56,7 @@ export default function agentSchedulePage() {
       >
         シフト追加
       </Button>
+      <AddShiftDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </DefaultLayout>
   );
 }
