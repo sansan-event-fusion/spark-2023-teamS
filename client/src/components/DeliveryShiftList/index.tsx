@@ -1,12 +1,14 @@
-import { Box, Card, Typography } from "@mui/material";
+import { useState } from "react";
+
+import { Box, Button, Card, Typography } from "@mui/material";
+import { AddShiftDialog } from "@/components/AddShiftDialog";
 
 export const DeliveryShiftList = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Typography sx={{ marginTop: { xs: "20px", sm: "0px" } }}>
-        配送シフト
-      </Typography>
-      {[...Array(3)].map((_) => (
+      {[...Array(2)].map((_) => (
         <Card
           sx={{
             width: { xs: "100%", sm: "80%" },
@@ -69,6 +71,25 @@ export const DeliveryShiftList = () => {
           </Box>
         </Card>
       ))}
+      <Button
+        onClick={() => setIsOpen(true)}
+        size="small"
+        variant="outlined"
+        style={{
+          borderColor: "black",
+          background: "#014A8F",
+        }}
+        sx={{
+          color: "white",
+          marginTop: "30px",
+          marginX: "10px",
+          width: "160px",
+          fontSize: "20px",
+        }}
+      >
+        シフト追加
+      </Button>
+      <AddShiftDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </Box>
   );
 };
