@@ -6,10 +6,13 @@ export const DailyUserCountCard = ({ enphasis }: DailyUserCountCardProps) => {
     <Card
       sx={{
         width: {
-          xs: "105px",
-          sm: "151px",
+          xs: "90px",
+          sm: "150px",
         },
-        height: "71px",
+        height: {
+          xs: "50px",
+          sm: "70px",
+        },
         border: enphasis ? "2px solid #CB161D" : "1px solid gray",
       }}
     >
@@ -32,7 +35,12 @@ export const DailyUserCountCard = ({ enphasis }: DailyUserCountCardProps) => {
         noWrap
         component="div"
         textAlign="center"
-        sx={{ fontSize: "24px" }}
+        sx={{
+          fontSize: {
+            xs: "16px",
+            sm: "24px",
+          },
+        }}
       >
         4人
       </Typography>
