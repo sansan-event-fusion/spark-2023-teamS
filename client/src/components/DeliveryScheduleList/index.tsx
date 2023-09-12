@@ -3,7 +3,6 @@ import { Box, Card, Typography } from "@mui/material";
 export const DeliveryScheduleList = () => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Typography>配送スケジュール</Typography>
       {[...Array(3)].map((_) => (
         <Card
           sx={{
