@@ -1,20 +1,15 @@
-import { useState } from "react";
+import { Box, Typography } from "@mui/material";
 
-import { Box, Button } from "@mui/material";
-
-import { AddShiftDialog } from "@/components/AddShiftDialog";
 import { DefaultLayout } from "@/components/DefaultLayout";
 import { DeliveryScheduleList } from "@/components/DeliveryScheduleList";
 import { DeliveryShiftList } from "@/components/DeliveryShiftList";
 import { UserCountList } from "@/components/UserCountList";
 
 export default function agentSchedulePage() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <DefaultLayout>
       <Box
-        height="80%"
+        height="100%"
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -28,35 +23,20 @@ export default function agentSchedulePage() {
           width="100%"
           display="flex"
           flexDirection={{ xs: "column", sm: "row" }}
-          alignItems="center"
+          alignItems={{ xs: "center", sm: "flex-start" }}
         >
           <Box width="50%">
+            <Typography>配送スケジュール</Typography>
             <DeliveryScheduleList />
           </Box>
           <Box width="50%">
+            <Typography sx={{ marginTop: { xs: "20px", sm: "0px" } }}>
+              配送シフト
+            </Typography>
             <DeliveryShiftList />
           </Box>
         </Box>
       </Box>
-      <Button
-        onClick={() => setIsOpen(true)}
-        size="small"
-        variant="outlined"
-        style={{
-          borderColor: "black",
-          background: "#014A8F",
-        }}
-        sx={{
-          color: "white",
-          marginTop: "10px",
-          marginX: "10px",
-          width: "160px",
-          fontSize: "20px",
-        }}
-      >
-        シフト追加
-      </Button>
-      <AddShiftDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </DefaultLayout>
   );
 }
