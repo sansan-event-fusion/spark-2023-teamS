@@ -8,8 +8,9 @@ export const DeliveryShiftList = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      {[...Array(2)].map((_) => (
+      {[...Array(2)].map((_, index) => (
         <Card
+          key={index}
           sx={{
             width: { xs: "100%", sm: "80%" },
             display: "flex",

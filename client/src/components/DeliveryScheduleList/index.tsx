@@ -3,8 +3,9 @@ import { Box, Card, Typography } from "@mui/material";
 export const DeliveryScheduleList = () => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      {[...Array(3)].map((_) => (
+      {[...Array(3)].map((_, index) => (
         <Card
+          key={index}
           sx={{
             width: { xs: "100%", sm: "80%" },
             display: "flex",
