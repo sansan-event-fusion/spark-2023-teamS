@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BuyerController;
 use App\Http\Controllers\Api\ShiftController;
 use App\Http\Controllers\Api\AgentController;
+use App\Http\Controllers\Api\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// 購入者関連API
 Route::apiResource('/user/buyer', BuyerController::class);
-Route::apiResource('/shifts/agents', ShiftController::class);
+
+// 代理人関連API
 Route::apiResource('/user/agent', AgentController::class);
+
+// 配送情報関連API
+Route::apiResource('/delivery/buyers', HistoryController::class);
+Route::apiResource('/histories', HistoryController::class);
+
+// 代理人シフト関連API
+Route::apiResource('/shifts/agents', ShiftController::class);
