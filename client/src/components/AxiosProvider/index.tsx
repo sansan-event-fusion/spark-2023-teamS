@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import React, { useEffect } from "react";
+import React from "react";
 import { app } from "../../lib/firebase";
 
 export const instance = axios.create({
@@ -11,30 +11,22 @@ export const instance = axios.create({
 const auth = getAuth(app);
 
 export function AxiosProvider({ children }: { children: React.ReactElement }) {
-  useEffect(() => {
-    const reqestInterceptor = instance.interceptors.request.use(
-      async (request) => {
-        const token = await auth.currentUser?.getIdToken();
-        if (token) {
-          instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        }
-        return request;
+  const reqestInterceptor = instance.interceptors.request.use(
+    async (request) => {
+      const token = await auth.currentUser?.getIdToken();
+      if (token) {
+        request.headers.Authorization = `Bearer ${token}`;
       }
-    );
-    const responseInterceptor = instance.interceptors.response.use(
-      async (response) => {
-        return response;
-      },
-      async (error) => {
-        return;
-      }
-    );
-
-    return () => {
-      instance.interceptors.request.eject(reqestInterceptor);
-      instance.interceptors.response.eject(responseInterceptor);
-    };
-  }, []);
-
+      return request;
+    }
+  );
+  const responseInterceptor = instance.interceptors.response.use(
+    async (response) => {
+      return response;
+    },
+    async (error) => {
+      return;
+    }
+  );
   return <>{children}</>;
 }
