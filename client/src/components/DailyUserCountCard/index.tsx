@@ -1,7 +1,10 @@
 import { Box, Card, Typography } from "@mui/material";
 import { DailyUserCountCardProps } from "./types";
 
-export const DailyUserCountCard = ({ enphasis }: DailyUserCountCardProps) => {
+export const DailyUserCountCard = ({
+  element,
+  enphasis,
+}: DailyUserCountCardProps) => {
   return (
     <Card
       sx={{
@@ -42,7 +45,7 @@ export const DailyUserCountCard = ({ enphasis }: DailyUserCountCardProps) => {
           },
         }}
       >
-        4人
+        {element}人
       </Typography>
     </Card>
   );
