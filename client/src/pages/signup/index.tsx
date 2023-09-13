@@ -1,11 +1,27 @@
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
 
-import { Box, Button, TextField } from "@mui/material";
+import Image from "next/image";
+
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 export default function signupPage() {
+  const [signupData, setSignupData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignupData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const signup = async (e: React.FormEvent<HTMLFormElement>) => {};
+
   return (
-    <main>
+    <form onSubmit={signup}>
       <Box
         sx={{
           width: "100%",
@@ -20,24 +36,19 @@ export default function signupPage() {
             justifyContent: "center",
           }}
         >
-          <Box sx={{ marginBottom: "40px" }}>
-            <Image src="/images/logo.png" alt="logo" width={200} height={100} />
+          <Box sx={{ marginTop: "20px", marginBottom: "10px" }}>
+            <Image src="/images/logo.png" alt="logo" width={100} height={100} />
           </Box>
+          <Typography variant="h5" sx={{ marginBottom: "20px" }}>
+            新規登録
+          </Typography>
           <TextField
+            value={signupData.email}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
-            id="name"
-            label="氏名"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            size="small"
-            defaultValue=""
             id="email"
+            name="email"
             label="メールアドレス"
             variant="outlined"
             sx={{
@@ -46,9 +57,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.password}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="password"
+            name="password"
             label="パスワード"
             variant="outlined"
             type="password"
@@ -58,75 +72,12 @@ export default function signupPage() {
               marginBottom: "20px",
             }}
           />
-          <TextField
-            size="small"
-            defaultValue=""
-            id="phone_number"
-            label="電話番号"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            size="small"
-            defaultValue=""
-            id="postal_code"
-            label="郵便番号"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            size="small"
-            defaultValue=""
-            id="prefecture"
-            label="都道府県"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            size="small"
-            defaultValue=""
-            id="city"
-            label="市町村"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            size="small"
-            defaultValue=""
-            id="address"
-            label="番地"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            size="small"
-            defaultValue=""
-            id="number"
-            label="部屋番号"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
           <Button
             size="small"
             variant="outlined"
+            type="submit"
+            LinkComponent={"a"}
+            href="/signup/detail"
             style={{
               borderColor: "black",
               background: "#014A8F",
@@ -139,10 +90,10 @@ export default function signupPage() {
               fontSize: "20px",
             }}
           >
-            <Link href={""}>登録</Link>
+            次へ
           </Button>
         </Box>
       </Box>
-    </main>
+    </form>
   );
 }
