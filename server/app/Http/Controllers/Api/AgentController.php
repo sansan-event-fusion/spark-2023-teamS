@@ -10,9 +10,14 @@ use App\Http\Requests\StoreAgentRequest;
 
 class AgentController extends Controller
 {
-    public function index() {
-        $allAgents = Agent::all();
-        return AgentResource::collection($allAgents);
+    //代理人のログイン
+    public function signIn(Request $request) {
+        // $allAgents = Agent::all();
+        $agent = Agent::query()->where('firebase_uid', $request->firebase_uid)->first();
+
+        response()->json($agent);
+
+        return AgentResource::make($agent);
     }
 
     public function show(Agent $agent)
@@ -20,7 +25,8 @@ class AgentController extends Controller
         return new AgentResource($agent);
     }
 
-    public function store(StoreAgentRequest $request)
+    // 代理人の登録
+    public function signUp(StoreAgentRequest $request)
     {
         $data = $request->validated();
         $agent = Agent::create($data);

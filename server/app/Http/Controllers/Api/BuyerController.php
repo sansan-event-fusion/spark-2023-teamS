@@ -10,9 +10,19 @@ use App\Http\Requests\StoreBuyerRequest;
 
 class BuyerController extends Controller
 {
-    public function index() {
-        $allBuyers = Buyer::all();
-        return BuyerResource::collection($allBuyers);
+    public function __construct()
+    {
+        $this->middleware('firebase');
+    }
+
+    // 購入者のログイン
+    public function signIn(Request $request) {
+        // $allBuyers = Buyer::all();
+        $buyer = Buyer::query()->where('firebase_uid', $request->firebase_uid)->first();
+
+        response()->json($buyer);
+
+        return BuyerResource::make($buyer);
     }
 
     public function show(Buyer $buyer)
@@ -20,7 +30,8 @@ class BuyerController extends Controller
         return new BuyerResource($buyer);
     }
 
-    public function store(StoreBuyerRequest $request)
+    //購入者の登録
+    public function signUp(StoreBuyerRequest $request)
     {
         $data = $request->validated();
         $buyer = Buyer::create($data);
