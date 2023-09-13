@@ -1,7 +1,17 @@
+import { useRouter } from "next/router";
+
 import { Box, Card, Icon, Rating, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-export const AgentsList = () => {
-  return [...Array(4)].map((_) => (
+import { AgentListProps } from "./types";
+
+export const AgentsList = ({ agentList }: AgentListProps) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/buyer/request");
+  };
+
+  return agentList?.data.map((data, _) => (
     <Card
       sx={{
         width: "100%",
@@ -17,6 +27,7 @@ export const AgentsList = () => {
         justifyContent="space-between"
         alignItems="center"
         paddingX="20px"
+        onClick={handleClick}
       >
         <AccountCircleIcon fontSize="large" />
         <Box>
