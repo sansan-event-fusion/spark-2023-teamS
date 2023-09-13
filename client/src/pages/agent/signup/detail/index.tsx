@@ -158,7 +158,7 @@ export default function signupPage() {
             fontSize: "20px",
           }}
         >
-          <Link href={"/buyer/select"}>登録</Link>
+          <Link href={"/agent/schedule"}>登録</Link>
         </Button>
       </Box>
     </Box>

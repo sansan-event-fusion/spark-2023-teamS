@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { app } from "../../lib/firebase";
+import { app } from "@/lib/firebase";
 
 export default function signin() {
   const [email, setEmail] = useState("");
