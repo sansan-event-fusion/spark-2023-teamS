@@ -7,8 +7,15 @@ import { useRouter } from "next/router";
 export function FirebaseAuthProvider({ children }: FirebaseAuthProviderProps) {
   const auth = getAuth(app);
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(auth.currentUser);
-  const noAuthPages = ["/signup", "/signin", "/buyer/start", "/buyer/select"];
+
+  const noAuthPages = [
+    "/signup",
+    "/signup/detail",
+    "/signin",
+    "/buyer/start",
+    "/buyer/select",
+  ];
+
   // 未認証状態で, 要認証ページにアクセスしたときはサインインページにリダイレクト
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
