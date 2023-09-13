@@ -35,7 +35,7 @@ export default function signupPage() {
         signupData.password
       );
 
-      router.push("/signup/detail");
+      router.push("/agent/signup/detail");
     } catch (error) {
       alert("登録に失敗しました");
     }
