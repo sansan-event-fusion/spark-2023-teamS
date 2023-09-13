@@ -19,7 +19,7 @@ export function FirebaseAuthProvider({ children }: FirebaseAuthProviderProps) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user && !noAuthPages.includes(router.pathname)) {
-        // router.replace("/signin");
+        router.replace("/signin");
       }
     });
     return () => unsubscribe();
