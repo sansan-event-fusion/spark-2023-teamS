@@ -8,6 +8,7 @@ export const UserCountList = () => {
       sx={{
         overflowX: "scroll",
         maxWidth: "100%",
+        height: { xs: "60px", sm: "100px" },
       }}
     >
       <Box display="flex" gap="10px">
