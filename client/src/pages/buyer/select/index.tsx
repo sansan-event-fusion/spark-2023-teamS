@@ -8,9 +8,10 @@ import { Box } from "@mui/material";
 import { instance } from "@/components/AxiosProvider";
 
 import dayjs from "dayjs";
+import { Shift } from "@/types/shift";
 
 export default function buyerSelectPage() {
-  const [shiftList, setShiftList] = useState();
+  const [shiftList, setShiftList] = useState<Shift>();
 
   const today = dayjs().format("YYYY-MM-DD");
   const queryParams = {
@@ -20,7 +21,7 @@ export default function buyerSelectPage() {
   useEffect(() => {
     const getShiftList = async () => {
       await instance
-        .get("/shifts/agents", {
+        .get<Shift>("/shifts/agents", {
           params: queryParams,
         })
         .then(({ data }) => setShiftList(data));
@@ -28,7 +29,11 @@ export default function buyerSelectPage() {
     getShiftList();
   }, []);
 
-  console.log(shiftList);
+  console.log(typeof shiftList?.data);
+
+  shiftList?.data.map((e, _) => {
+    console.log(e["agent_id"]);
+  });
 
   return (
     <DefaultLayout>
@@ -41,8 +46,8 @@ export default function buyerSelectPage() {
         paddingTop="50px"
         paddingX="30px"
       >
-        <UserCountList />
-        <AgentsList />
+        <UserCountList persons={shiftList?.data.length} />
+        <AgentsList agentList={shiftList} />
       </Box>
     </DefaultLayout>
   );
