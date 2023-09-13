@@ -1,21 +1,13 @@
 import { useState } from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 
 export default function signupPage() {
   const [signupData, setSignupData] = useState({
-    name: "",
     email: "",
     password: "",
-    phone_number: "",
-    postal_code: "",
-    prefecture: "",
-    city: "",
-    address: "",
-    room_number: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +19,6 @@ export default function signupPage() {
   };
 
   const signup = async (e: React.FormEvent<HTMLFormElement>) => {};
-
-  console.log(signupData);
 
   return (
     <form onSubmit={signup}>
@@ -52,20 +42,6 @@ export default function signupPage() {
           <Typography variant="h5" sx={{ marginBottom: "20px" }}>
             新規登録
           </Typography>
-          <TextField
-            value={signupData.name}
-            onChange={handleChange}
-            required
-            size="small"
-            id="name"
-            name="name"
-            label="氏名"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
           <TextField
             value={signupData.email}
             onChange={handleChange}
@@ -96,93 +72,12 @@ export default function signupPage() {
               marginBottom: "20px",
             }}
           />
-          <TextField
-            value={signupData.phone_number}
-            onChange={handleChange}
-            required
-            size="small"
-            id="phone_number"
-            name="phone_number"
-            label="電話番号"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            value={signupData.postal_code}
-            onChange={handleChange}
-            required
-            size="small"
-            id="postal_code"
-            name="postal_code"
-            label="郵便番号"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            value={signupData.prefecture}
-            onChange={handleChange}
-            required
-            size="small"
-            id="prefecture"
-            name="prefecture"
-            label="都道府県"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            value={signupData.city}
-            onChange={handleChange}
-            required
-            size="small"
-            id="city"
-            name="city"
-            label="市町村"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            value={signupData.address}
-            onChange={handleChange}
-            required
-            size="small"
-            id="address"
-            name="address"
-            label="番地"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
-          <TextField
-            value={signupData.room_number}
-            onChange={handleChange}
-            size="small"
-            id="room_number"
-            name="room_number"
-            label="部屋番号・階"
-            variant="outlined"
-            sx={{
-              width: { xs: "240px", sm: "360px" },
-              marginBottom: "20px",
-            }}
-          />
           <Button
             size="small"
             variant="outlined"
             type="submit"
+            LinkComponent={"a"}
+            href="/signup/detail"
             style={{
               borderColor: "black",
               background: "#014A8F",
@@ -195,7 +90,7 @@ export default function signupPage() {
               fontSize: "20px",
             }}
           >
-            <Link href={""}>登録</Link>
+            次へ
           </Button>
         </Box>
       </Box>
