@@ -4,11 +4,19 @@ import Image from "next/image";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "@/lib/firebase";
+import { useRouter } from "next/router";
+
 export default function signupPage() {
   const [signupData, setSignupData] = useState({
     email: "",
     password: "",
   });
+
+  const router = useRouter();
+
+  const auth = getAuth(app);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,7 +26,20 @@ export default function signupPage() {
     }));
   };
 
-  const signup = async (e: React.FormEvent<HTMLFormElement>) => {};
+  const signup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        signupData.email,
+        signupData.password
+      );
+
+      router.push("/signup/detail");
+    } catch (error) {
+      alert("登録に失敗しました");
+    }
+  };
 
   return (
     <form onSubmit={signup}>
@@ -76,8 +97,6 @@ export default function signupPage() {
             size="small"
             variant="outlined"
             type="submit"
-            LinkComponent={"a"}
-            href="/signup/detail"
             style={{
               borderColor: "black",
               background: "#014A8F",
