@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { DefaultLayout } from "@/components/DefaultLayout";
-import { DeliveryDetailsCard } from "@/components/DeliveryDetailsCard";
+import { RequestDetailsCard } from "@/components/RequestDetailsCard";
 import { PaymentCard } from "@/components/PaymentCard";
 import { Box } from "@mui/material";
 
@@ -16,7 +16,7 @@ export default function buyerRequestPage() {
         display="flex"
         flexDirection={{ xs: "column", sm: "row" }}
       >
-        <DeliveryDetailsCard
+        <RequestDetailsCard
           receiveLocation={receiveLocation}
           setReceiveLocation={setReceiveLocation}
           deliveryType={deliveryType}

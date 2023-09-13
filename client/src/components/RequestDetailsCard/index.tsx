@@ -18,7 +18,7 @@ import AddCardIcon from "@mui/icons-material/AddCard";
 
 import { BuyerRequestProps } from "@/pages/buyer/request/types";
 
-export const DeliveryDetailsCard = ({
+export const RequestDetailsCard = ({
   deliveryType,
   setDeliveryType,
   receiveLocation,
