@@ -39,8 +39,11 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
         <Button
           size="large"
           variant="contained"
+          LinkComponent={"a"}
+          href="/signin"
           sx={{
             color: "black",
+            backgroundColor: "white",
             borderRadius: "9999px",
             fontSize: {
               xs: "12px",
@@ -53,8 +56,10 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
         <Button
           size="large"
           variant="contained"
+          href="/signup"
           sx={{
             color: "black",
+            backgroundColor: "white",
             borderRadius: "9999px",
             marginLeft: "10px",
             fontSize: {
@@ -65,7 +70,6 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
         >
           新規登録
         </Button>
-
         <Box sx={{ display: { xs: "flex", md: "none" } }}></Box>
       </Toolbar>
     </AppBar>

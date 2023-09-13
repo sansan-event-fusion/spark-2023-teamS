@@ -1,9 +1,7 @@
 import { AgentsList } from "@/components/AgentsList";
-import { DailyUserCountCard } from "@/components/DailyUserCountCard";
 import { DefaultLayout } from "@/components/DefaultLayout";
 import { UserCountList } from "@/components/UserCountList";
 import { Box } from "@mui/material";
-
 export default function buyerSelectPage() {
   return (
     <DefaultLayout>
