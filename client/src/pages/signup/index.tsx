@@ -1,11 +1,37 @@
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 export default function signupPage() {
+  const [signupData, setSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phone_number: "",
+    postal_code: "",
+    prefecture: "",
+    city: "",
+    address: "",
+    room_number: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignupData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const signup = async (e: React.FormEvent<HTMLFormElement>) => {};
+
+  console.log(signupData);
+
   return (
-    <main>
+    <form onSubmit={signup}>
       <Box
         sx={{
           width: "100%",
@@ -20,13 +46,19 @@ export default function signupPage() {
             justifyContent: "center",
           }}
         >
-          <Box sx={{ marginBottom: "40px" }}>
-            <Image src="/images/logo.png" alt="logo" width={200} height={100} />
+          <Box sx={{ marginTop: "20px", marginBottom: "10px" }}>
+            <Image src="/images/logo.png" alt="logo" width={100} height={100} />
           </Box>
+          <Typography variant="h5" sx={{ marginBottom: "20px" }}>
+            新規登録
+          </Typography>
           <TextField
+            value={signupData.name}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="name"
+            name="name"
             label="氏名"
             variant="outlined"
             sx={{
@@ -35,9 +67,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.email}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="email"
+            name="email"
             label="メールアドレス"
             variant="outlined"
             sx={{
@@ -46,9 +81,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.password}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="password"
+            name="password"
             label="パスワード"
             variant="outlined"
             type="password"
@@ -59,9 +97,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.phone_number}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="phone_number"
+            name="phone_number"
             label="電話番号"
             variant="outlined"
             sx={{
@@ -70,9 +111,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.postal_code}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="postal_code"
+            name="postal_code"
             label="郵便番号"
             variant="outlined"
             sx={{
@@ -81,9 +125,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.prefecture}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="prefecture"
+            name="prefecture"
             label="都道府県"
             variant="outlined"
             sx={{
@@ -92,9 +139,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.city}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="city"
+            name="city"
             label="市町村"
             variant="outlined"
             sx={{
@@ -103,9 +153,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.address}
+            onChange={handleChange}
+            required
             size="small"
-            defaultValue=""
             id="address"
+            name="address"
             label="番地"
             variant="outlined"
             sx={{
@@ -114,10 +167,12 @@ export default function signupPage() {
             }}
           />
           <TextField
+            value={signupData.room_number}
+            onChange={handleChange}
             size="small"
-            defaultValue=""
-            id="number"
-            label="部屋番号"
+            id="room_number"
+            name="room_number"
+            label="部屋番号・階"
             variant="outlined"
             sx={{
               width: { xs: "240px", sm: "360px" },
@@ -127,6 +182,7 @@ export default function signupPage() {
           <Button
             size="small"
             variant="outlined"
+            type="submit"
             style={{
               borderColor: "black",
               background: "#014A8F",
@@ -143,6 +199,6 @@ export default function signupPage() {
           </Button>
         </Box>
       </Box>
-    </main>
+    </form>
   );
 }
