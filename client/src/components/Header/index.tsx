@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   Badge,
   Box,
@@ -48,7 +50,7 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
             },
           }}
         >
-          ログイン
+          <Link href={"/buyer/signin"}>ログイン</Link>
         </Button>
         <Button
           size="large"
@@ -63,7 +65,7 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
             },
           }}
         >
-          新規登録
+          <Link href={"/buyer/signup"}>新規登録</Link>
         </Button>
 
         <Box sx={{ display: { xs: "flex", md: "none" } }}></Box>
