@@ -1,6 +1,7 @@
-import { Box, Button, Drawer, Typography } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
+
+import { Box, Button, Drawer, Typography } from "@mui/material";
+
 import { DrawerWrapperProps } from "./types";
 
 export const DrawerWrapper = ({ isOpen, onClose }: DrawerWrapperProps) => {
@@ -23,7 +24,7 @@ export const DrawerWrapper = ({ isOpen, onClose }: DrawerWrapperProps) => {
             fontSize: "24px",
           }}
         >
-          登録する
+          <Link href={"/buyer/signup"}>登録する</Link>
         </Button>
         <Button
           size="large"
@@ -40,7 +41,7 @@ export const DrawerWrapper = ({ isOpen, onClose }: DrawerWrapperProps) => {
             fontSize: "24px",
           }}
         >
-          ログイン
+          <Link href={"/buyer/signin"}>ログイン</Link>
         </Button>
 
         <Typography
@@ -48,7 +49,7 @@ export const DrawerWrapper = ({ isOpen, onClose }: DrawerWrapperProps) => {
           noWrap
           sx={{ fontSize: "16px", marginTop: "10px" }}
         >
-          <Link href={""}>代理人として登録する</Link>
+          <Link href={"/agent/signup"}>代理人として登録する</Link>
         </Typography>
       </Box>
     </Drawer>

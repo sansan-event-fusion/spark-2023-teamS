@@ -2,22 +2,26 @@ import Link from "next/link";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../lib/firebase";
-import { useRouter } from "next/router";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { app } from "@/lib/firebase";
 
 export default function signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const auth = getAuth(app);
-  const router = useRouter();
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/buyer/select");
+      const credential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const token = await credential.user.getIdToken();
+      await signOut(auth);
     } catch (error) {
       alert("ログインに失敗しました");
     }
@@ -67,6 +71,7 @@ export default function signin() {
             }}
             sx={{
               color: "white",
+
               marginTop: { xs: "10px", sm: "0px" },
               marginX: "10px",
               width: "160px",
@@ -80,27 +85,8 @@ export default function signin() {
             noWrap
             sx={{ fontSize: "16px", marginTop: "10px" }}
           >
-            <Link href={"/signup"}>新規登録</Link>
+            <Link href={""}>新規登録</Link>
           </Typography>
-
-          <Button
-            size="small"
-            variant="outlined"
-            onClick={() => auth.signOut()}
-            style={{
-              borderColor: "black",
-              background: "#014A8F",
-            }}
-            sx={{
-              color: "white",
-              marginTop: { xs: "10px", sm: "0px" },
-              marginX: "10px",
-              width: "160px",
-              fontSize: "20px",
-            }}
-          >
-            ログアウト
-          </Button>
         </Box>
       </Box>
     </form>
