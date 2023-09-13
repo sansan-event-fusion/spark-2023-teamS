@@ -9,9 +9,9 @@ export function FirebaseAuthProvider({ children }: FirebaseAuthProviderProps) {
   const auth = getAuth(app);
   const router = useRouter();
   const noAuthPages = [
-    "/signup",
-    "/signup/detail",
-    "/signin",
+    "/buyer/signup",
+    "/buyer/signup/detail",
+    "/buyer/signin",
     "/buyer/start",
     "/buyer/select",
   ];
@@ -19,7 +19,7 @@ export function FirebaseAuthProvider({ children }: FirebaseAuthProviderProps) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user && !noAuthPages.includes(router.pathname)) {
-        router.replace("/signin");
+        // router.replace("buyer/signin");
       }
     });
     return () => unsubscribe();
