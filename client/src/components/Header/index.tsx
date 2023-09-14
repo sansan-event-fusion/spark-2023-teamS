@@ -1,13 +1,6 @@
 import Link from "next/link";
 
-import {
-  Badge,
-  Box,
-  Button,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { HeaderProps } from "./types";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
@@ -41,8 +34,6 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
         <Button
           size="large"
           variant="contained"
-          LinkComponent={"a"}
-          href="/signin"
           sx={{
             color: "black",
             backgroundColor: "white",
@@ -58,7 +49,6 @@ export const Header = ({ onClickMenu }: HeaderProps) => {
         <Button
           size="large"
           variant="contained"
-          href="/signup"
           sx={{
             color: "black",
             backgroundColor: "white",
