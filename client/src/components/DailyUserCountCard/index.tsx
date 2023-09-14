@@ -2,6 +2,7 @@ import { Box, Card, Typography } from "@mui/material";
 import { DailyUserCountCardProps } from "./types";
 
 export const DailyUserCountCard = ({
+  date,
   element,
   enphasis,
 }: DailyUserCountCardProps) => {
@@ -31,7 +32,7 @@ export const DailyUserCountCard = ({
           },
         }}
       >
-        2023/9/8(金)
+        {date}
       </Typography>
       <Typography
         variant="h6"

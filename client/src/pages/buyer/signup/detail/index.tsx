@@ -6,12 +6,17 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { instance } from "@/components/AxiosProvider";
 import { useRouter } from "next/router";
 
-import { getAuth } from "firebase/auth";
+import { deleteUser, getAuth } from "firebase/auth";
 import { app } from "@/lib/firebase";
 
+import { useRecoilValue } from "recoil";
+import { firebaseUserAtom } from "@/atoms/firebaseUserAtom";
+
 export default function signupPage() {
+  const user = useRecoilValue(firebaseUserAtom);
+
   const [signupData, setSignupData] = useState({
-    email: getAuth(app).currentUser?.email,
+    email: user?.email || "",
     name: "",
     phone_number: "",
     postal_code: "",
@@ -33,8 +38,10 @@ export default function signupPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    await instance.post("/sign-up/buyer", signupData);
+    const res = await instance.post("/sign-up/buyer", signupData);
+    if (!res && user) {
+      await deleteUser(user);
+    }
 
     router.push("/buyer/select");
   };

@@ -150,7 +150,7 @@ export const RequestDetailsCard = ({
           </Select>
         </FormControl>
       </Box>
-      <Typography variant="h5" marginTop="10px" marginLeft="10px">
+      {/* <Typography variant="h5" marginTop="10px" marginLeft="10px">
         お支払い
       </Typography>
       <Grid
@@ -174,7 +174,7 @@ export const RequestDetailsCard = ({
             </Typography>
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Card>
   );
 };

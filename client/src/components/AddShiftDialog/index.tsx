@@ -15,7 +15,12 @@ import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { ja } from "date-fns/locale";
 
-export const AddShiftDialog = ({ isOpen, onClose }: AddShiftDialogProps) => {
+export const AddShiftDialog = ({
+  onSubmit,
+  isOpen,
+  onClose,
+  handleChange,
+}: AddShiftDialogProps) => {
   return (
     <Dialog open={isOpen} onClose={onClose} maxWidth="xs">
       <DialogActions>
@@ -26,38 +31,51 @@ export const AddShiftDialog = ({ isOpen, onClose }: AddShiftDialogProps) => {
       <DialogContent>
         <Typography>シフト日</Typography>
         <LocalizationProvider adapterLocale={ja} dateAdapter={AdapterDateFns}>
-          <DatePicker
-            slotProps={{ textField: { size: "medium" } }}
+          <TextField
+            size="medium"
+            defaultValue=""
+            id="date"
+            name="date"
+            variant="outlined"
+            type="date"
             sx={{
               width: { xs: "200px", sm: "360px" },
               background: "white",
               marginBottom: { xs: "20px" },
             }}
+            onChange={handleChange}
           />
         </LocalizationProvider>
         <Typography>開始時間</Typography>
         <TextField
           size="medium"
           defaultValue=""
-          id="start_time"
+          id="starts_time"
+          name="starts_time"
           variant="outlined"
-          type="time"
+          type="datetime-local"
           sx={{ width: { xs: "200px", sm: "360px" }, marginBottom: "20px" }}
+          onChange={handleChange}
         />
         <Typography>終了時間</Typography>
         <TextField
           size="medium"
           defaultValue=""
-          id="end_time"
+          id="ends_time"
+          name="ends_time"
           variant="outlined"
-          type="time"
+          type="datetime-local"
           sx={{ width: { xs: "200px", sm: "360px" }, marginBottom: "20px" }}
+          onChange={handleChange}
         />
       </DialogContent>
       <DialogActions>
         <Box display="flex" flexDirection="column" alignItems="center">
           <Button
-            onClick={onClose}
+            onClick={() => {
+              onSubmit();
+              onClose();
+            }}
             size="small"
             variant="outlined"
             style={{

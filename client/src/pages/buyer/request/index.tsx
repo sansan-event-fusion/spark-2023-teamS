@@ -43,21 +43,18 @@ export default function buyerRequestPage() {
         gap={{ xs: "20px", sm: "40px" }}
         marginTop={{ xs: "20px", sm: "40px" }}
       >
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          gap={"20px"}
+        >
           <RequestDetailsCard
             receiveLocation={receiveLocation}
             setReceiveLocation={setReceiveLocation}
             deliveryType={deliveryType}
             setDeliveryType={setDeliveryType}
           />
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          gap="20px"
-        >
-          <PaymentCard />
           <Button
             size="small"
             variant="outlined"
@@ -72,8 +69,16 @@ export default function buyerRequestPage() {
             }}
             onClick={handleSubmit}
           >
-            お支払い
+            予約する
           </Button>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          gap="20px"
+        >
+          {/* <PaymentCard /> */}
         </Box>
       </Box>
     </DefaultLayout>

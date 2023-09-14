@@ -7,8 +7,12 @@ import { UserCountList } from "@/components/UserCountList";
 import { Box } from "@mui/material";
 import { instance } from "@/components/AxiosProvider";
 
+import { useRecoilValue } from "recoil";
+
 import dayjs from "dayjs";
 import { Shift } from "@/types/shift";
+import { userAtom } from "@/atoms/userAtom";
+import { AxiosResponse } from "axios";
 
 export default function buyerSelectPage() {
   const [shiftList, setShiftList] = useState<Shift>();
@@ -18,22 +22,22 @@ export default function buyerSelectPage() {
     date: today,
   };
 
+  const val = useRecoilValue(userAtom);
+  console.log(val);
+
   useEffect(() => {
     const getShiftList = async () => {
-      await instance
-        .get<Shift>("/shifts/agents", {
-          params: queryParams,
-        })
-        .then(({ data }) => setShiftList(data));
+      const res: AxiosResponse<Shift> = await instance.get("/shifts/agents", {
+        params: queryParams,
+      });
+      setShiftList(res.data);
     };
     getShiftList();
   }, []);
 
-  console.log(typeof shiftList?.data);
-
-  shiftList?.data.map((e, _) => {
-    console.log(e["agent_id"]);
-  });
+  // shiftList?.data.map((e, _) => {
+  //   console.log(e["agent_id"]);
+  // });
 
   return (
     <DefaultLayout>

@@ -4,31 +4,24 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { app } from "@/lib/firebase";
+import { useAuthentication } from "@/hooks/useAuthentication";
+import { useRouter } from "next/router";
 
 export default function signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const auth = getAuth(app);
+  const { login } = useAuthentication("agent");
+  const router = useRouter();
 
-  const login = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onClickLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const credential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      const token = await credential.user.getIdToken();
-      await signOut(auth);
-    } catch (error) {
-      alert("ログインに失敗しました");
-    }
+    const loginRes = await login(email, password);
+    if (loginRes) router.push("/agent/schedule");
   };
 
   return (
-    <form onSubmit={login}>
+    <form onSubmit={onClickLogin}>
       <Box
         sx={{
           width: "100%",
