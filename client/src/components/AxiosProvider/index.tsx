@@ -9,17 +9,8 @@ export const instance = axios.create({
   timeout: 15000,
 });
 
-export function AxiosProvider({ children }: AxiosProviderProps) {
-  const auth = getAuth(app);
-  instance.interceptors.request.use(async (request) => {
-    const token = await auth.currentUser?.getIdToken();
-    if (token) {
-      request.headers.Authorization = `Bearer ${token}`;
-    }
-    return request;
-  });
-    
 export function AxiosProvider({ children }: { children: React.ReactElement }) {
+  const auth = getAuth(app);
   const reqestInterceptor = instance.interceptors.request.use(
     async (request) => {
       const token = await auth.currentUser?.getIdToken();
