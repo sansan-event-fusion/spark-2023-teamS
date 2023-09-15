@@ -1,30 +1,22 @@
 import Link from "next/link";
-
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useState } from "react";
-
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { app } from "@/lib/firebase";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { useAuthentication } from "@/hooks/useAuthentication";
 export default function signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const auth = getAuth(app);
+  const { login } = useAuthentication("buyer");
   const router = useRouter();
 
-  const login = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onClickLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/buyer/select");
-    } catch (error) {
-      alert("ログインに失敗しました");
-    }
+    const loginRes = await login(email, password);
+    if (loginRes) router.push("/buyer/select");
   };
 
   return (
-    <form onSubmit={login}>
+    <form onSubmit={onClickLogin}>
       <Box
         sx={{
           width: "100%",
@@ -82,25 +74,6 @@ export default function signin() {
           >
             <Link href={"/signup"}>新規登録</Link>
           </Typography>
-
-          <Button
-            size="small"
-            variant="outlined"
-            onClick={() => auth.signOut()}
-            style={{
-              borderColor: "black",
-              background: "#014A8F",
-            }}
-            sx={{
-              color: "white",
-              marginTop: { xs: "10px", sm: "0px" },
-              marginX: "10px",
-              width: "160px",
-              fontSize: "20px",
-            }}
-          >
-            ログアウト
-          </Button>
         </Box>
       </Box>
     </form>

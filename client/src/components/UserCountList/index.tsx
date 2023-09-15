@@ -17,6 +17,7 @@ export const UserCountList = ({ persons }: UserCountListProps) => {
       <Box display="flex" gap="10px">
         {personsList.map((element, index) => (
           <DailyUserCountCard
+            date={`9月${12 + index}日`}
             key={index}
             element={element}
             enphasis={index == 3}

@@ -22,7 +22,7 @@ export const PaymentCard = () => {
               marginRight: { xs: "5px", sm: "10px" },
             }}
           >
-            120円
+            0円
           </Typography>
         </Box>
         <Box display="flex" justifyContent="space-between">
@@ -42,7 +42,7 @@ export const PaymentCard = () => {
               marginBottom: { xs: "5px", sm: "10px" },
             }}
           >
-            150円
+            0円
           </Typography>
         </Box>
       </Box>
@@ -73,7 +73,7 @@ export const PaymentCard = () => {
             marginRight: { xs: "5px", sm: "10px" },
           }}
         >
-          270円
+          0円
         </Typography>
       </Box>
     </Card>

@@ -3,7 +3,7 @@ import { Box, Card, Typography } from "@mui/material";
 export const DeliveryScheduleList = () => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      {[...Array(3)].map((_, index) => (
+      {[...Array(0)].map((_, index) => (
         <Card
           key={index}
           sx={{
@@ -19,7 +19,7 @@ export const DeliveryScheduleList = () => {
           <Box
             display="flex"
             height="100%"
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="center"
             paddingX="20px"
             sx={{ width: { xs: "200px", sm: "360px" } }}
@@ -48,7 +48,7 @@ export const DeliveryScheduleList = () => {
                 22:00~22:30
               </Typography>
             </Box>
-            <Box>
+            {/* <Box>
               <Typography textAlign="center" sx={{ fontSize: "15px" }}>
                 xxx <br />
               </Typography>
@@ -63,7 +63,7 @@ export const DeliveryScheduleList = () => {
               >
                 xxx
               </Typography>
-            </Box>
+            </Box> */}
           </Box>
         </Card>
       ))}

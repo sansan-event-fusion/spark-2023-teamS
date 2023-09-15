@@ -4,8 +4,35 @@ import { DefaultLayout } from "@/components/DefaultLayout";
 import { DeliveryScheduleList } from "@/components/DeliveryScheduleList";
 import { DeliveryShiftList } from "@/components/DeliveryShiftList";
 import { UserCountList } from "@/components/UserCountList";
+import { useState } from "react";
+import { instance } from "@/components/AxiosProvider";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "@/atoms/userAtom";
 
 export default function agentSchedulePage() {
+  const user = useRecoilValue(userAtom);
+
+  const [shiftData, setShiftData] = useState({
+    date: "",
+    starts_time: "",
+    ends_time: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setShiftData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const onShiftSubmit = async () => {
+    await instance.post("/shifts/agents", {
+      agent_id: user?.data.uuid,
+      ...shiftData,
+    });
+  };
+
   return (
     <DefaultLayout>
       <Box
@@ -16,7 +43,7 @@ export default function agentSchedulePage() {
         gap="20px"
         paddingTop="50px"
       >
-        <UserCountList />
+        <UserCountList persons={2} />
 
         <Box
           height="100%"
@@ -46,7 +73,10 @@ export default function agentSchedulePage() {
             >
               配送シフト
             </Typography>
-            <DeliveryShiftList />
+            <DeliveryShiftList
+              onSubmit={onShiftSubmit}
+              handleChange={handleChange}
+            />
           </Box>
         </Box>
       </Box>

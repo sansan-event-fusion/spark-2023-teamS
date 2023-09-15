@@ -24,7 +24,7 @@ export function FirebaseAuthProvider({ children }: FirebaseAuthProviderProps) {
       }
     });
     return () => unsubscribe();
-  });
+  }, []);
 
   return <>{children}</>;
 }

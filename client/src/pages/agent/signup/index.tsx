@@ -7,16 +7,16 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "@/lib/firebase";
 import { useRouter } from "next/router";
+import { useAuthentication } from "@/hooks/useAuthentication";
 
 export default function signupPage() {
+  const router = useRouter();
+  const { signupFirebase } = useAuthentication("agent");
+
   const [signupData, setSignupData] = useState({
     email: "",
     password: "",
   });
-
-  const router = useRouter();
-
-  const auth = getAuth(app);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,16 +28,12 @@ export default function signupPage() {
 
   const signup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        signupData.email,
-        signupData.password
-      );
-
+    const signupRes = await signupFirebase(
+      signupData.email,
+      signupData.password
+    );
+    if (signupRes) {
       router.push("/agent/signup/detail");
-    } catch (error) {
-      alert("登録に失敗しました");
     }
   };
 

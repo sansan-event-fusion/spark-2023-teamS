@@ -2,13 +2,17 @@ import { useState } from "react";
 
 import { Box, Button, Card, Typography } from "@mui/material";
 import { AddShiftDialog } from "@/components/AddShiftDialog";
+import { DeliveryShiftListProps } from "./types";
 
-export const DeliveryShiftList = () => {
+export const DeliveryShiftList = ({
+  handleChange,
+  onSubmit,
+}: DeliveryShiftListProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      {[...Array(2)].map((_, index) => (
+      {[...Array(0)].map((_, index) => (
         <Card
           key={index}
           sx={{
@@ -24,7 +28,7 @@ export const DeliveryShiftList = () => {
           <Box
             display="flex"
             height="100%"
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="center"
             paddingX="20px"
             sx={{ width: { xs: "200px", sm: "360px" } }}
@@ -53,7 +57,7 @@ export const DeliveryShiftList = () => {
                 8:00~22:30
               </Typography>
             </Box>
-            <Box>
+            {/* <Box>
               <Typography textAlign="center" sx={{ fontSize: "15px" }}>
                 xxx <br />
               </Typography>
@@ -68,7 +72,7 @@ export const DeliveryShiftList = () => {
               >
                 xxx
               </Typography>
-            </Box>
+            </Box> */}
           </Box>
         </Card>
       ))}
@@ -90,7 +94,12 @@ export const DeliveryShiftList = () => {
       >
         シフト追加
       </Button>
-      <AddShiftDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <AddShiftDialog
+        onSubmit={onSubmit}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        handleChange={handleChange}
+      />
     </Box>
   );
 };
