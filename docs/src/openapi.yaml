@@ -1,0 +1,92 @@
+openapi: 3.0.0
+
+info:
+  version: 2.0.0
+  title: DeliDeV API
+  description: DeliDeV description
+
+servers:
+  - url: 'http://localhost:8080'  # ポート番号を具体的に指定
+    description: ローカル環境
+  - url: 'http://example.com'  # 具体的なドメイン名に置き換え
+    description: 本番環境
+
+tags:
+  - name: buyers
+    description: 購入者の操作
+  - name: agents
+    description: 代理人の操作
+  - name: deliverys
+    description: 配送関連の操作
+  - name: shifts
+    description: シフト関連の操作
+    
+paths:
+  /buyer:
+    # ログイン処理
+    post: 
+      summary: 購入者のログイン
+      description: 購入者のログイン処理を行います
+      tags:
+        - buyers
+      requestBody:
+        description: ログイン情報
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hoge1234@example.com
+                password:
+                  type: string
+                  format: password
+                  example: password1234
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: hoge 
+    
+    # 登録処理
+    put:
+      summary: 購入者の登録
+      tags:
+        - buyers
+      deprecated: false
+      requestBody:
+        description: 登録内容
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: hoge
+                email:
+                  type: string
+                  example: hoge1234@example.com
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: hoge 
+                  email:
+                    type: string
+                    example: hoge1234@example.com
+                  
+                  
